@@ -1,0 +1,1 @@
+$(function(){$("#address").find("a").mouseover(function(){$(this).addClass("hover"),$(this).siblings().css("display","block")}),$("#address").find("a").mouseout(function(){$(this).removeClass("hover")}),$("#address").find("ul").mouseout(function(){$(this).css("display","none")})});
