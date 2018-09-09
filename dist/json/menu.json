@@ -1,0 +1,21 @@
+{
+	"menuList":[
+		[{"title":"图书","link":"#"},{"title":"童书","link":"#"}],
+		[{"title":"电子书","link":"#"},{"title":"网络文学","link":"#"}],
+		[{"title":"创意文具","link":"#"},{"title":"当当拍卖","link":"#"}],
+		[{"title":"服饰","link":"#"},{"title":"内衣","link":"#"}],
+		[{"title":"鞋靴","link":"#"},{"title":"箱包","link":"#"}],
+		[{"title":"运动户外","link":"#"}],
+		[{"title":"孕","link":"#"},{"title":"婴","link":"#"},{"title":"童","link":"#"}],
+		[{"title":"家居","link":"#"},{"title":"家纺","link":"#"},{"title":"汽车","link":"#"}],
+		[{"title":"家具","link":"#"},{"title":"家装","link":"#"},{"title":"康体","link":"#"}],
+		[{"title":"美妆","link":"#"},{"title":"个人护理","link":"#"},{"title":"成人","link":"#"}],
+		[{"title":"食品","link":"#"},{"title":"茶酒","link":"#"},{"title":"生鲜","link":"#"}],
+		[{"title":"图书","link":"#"},{"title":"童书","link":"#"},{"title":"童书","link":"#"}],
+		[{"title":"手机","link":"#"},{"title":"数码","link":"#"}],
+		[{"title":"电脑办公","link":"#"}],
+		[{"title":"家用电器","link":"#"}],
+		[{"title":"当当礼品卡","link":"#"},{"title":"生活服务","link":"#"}]
+		
+	]
+}
