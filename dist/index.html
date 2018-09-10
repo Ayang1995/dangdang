@@ -6,8 +6,9 @@
 		<link rel="stylesheet" href="css/base.css">
 		<link rel="stylesheet" href="css/index.css">
 		<script src="js/jquery.js"></script>
-		<!-- <script src="js/ajax2.js" type="text/javascript" charset="utf-8"></script> -->
+		<script src="js/moveopacity.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/index.js"></script>
+		<!-- <script src="js/seach.js" type="text/javascript" charset="utf-8"></script> -->
 		
 	</head>
 	<body>
@@ -16,6 +17,14 @@
 			<a href="">
 				<img src="images/banner.jpg"></source>
 			</a>
+		</div>
+		<!-- 弹出搜索条 -->
+		<div id="top-seach">
+			<img src="images/logo1.png" />
+			<div>
+				<input type="text" id="top-seach-txt" placeholder="秋装上新1折再抢神劵">
+				<input type="button" id="top-seach-btn"/>
+			</div>
 		</div>
 		<!-- 上导航 -->
 		<div id="top-nav-wrap">
@@ -91,8 +100,18 @@
 			<a href=""><img src="../images/logo.gif" /></a>
 		</div>
 		<div id="search">
+			<div id="seach-list">
+				<ul>
+					
+				</ul>
+				
+				<div id="secondlist" class="secondlist"></div>
+			</div>
 			<div class="seach-input">
-				<input type="text" placeholder="伊芙丽" id="txt"/>
+				
+				<input type="text" placeholder="伊芙丽" id="seach-txt"/>
+				 
+				
 				<span><i>全部分类</i><em></em>
 				<ul>
 					<li>全部分类</li>
@@ -157,12 +176,12 @@
 	<section>
 		<menu>
 			<ul class="menu-list">
-				
+				<!-- <li class=""><a href="">电子书</a><span>、</span><a href="">网络文学</a></li> -->
 				
 			</ul>
-			<div class="sec-list">
+			<div class="sec-list" data-id="">
 				<ul class="sec-lists">
-					<!-- <li class="sec-list-title">
+				<!--<li class="sec-list-title">
 						<a href=""><em>免费书</em><span>&gt;</span></a>
 						<a href=""><em>免费书</em><span>&gt;</span></a>
 					</li>
@@ -193,22 +212,64 @@
 			</div>
 		</menu>
 		<div id="viewpager">
-			<ul class="viewpager-1">
-				<li>
-					<a href=""><img src="images/lunbo1.jpg"/></a>
-				</li>
-			</ul>
-			<ul class="viewpager-2">
-				<li><a href=""><img src="images/s-lunbo1-1.jpg"/></a></li>
-				<li><a href=""><img src="images/s-lunbo1-2.jpg"/></a></li>
-				<li><a href=""><img src="images/s-lunbo1-3.jpg"/></a></li>
-				<li><a href=""><img src="images/s-lunbo1-4.jpg"/></a></li>
-			</ul>
+			<div id="viewpager-1">
+				<ul class="viewpager-1">
+					<li><a href=""><img src="images/lunbo1.jpg"/></a></li>
+					<li><a href=""><img src="images/lunbo2.jpg"/></a></li>
+					<li><a href=""><img src="images/lunbo3.jpg"/></a></li>
+					<li><a href=""><img src="images/lunbo4.jpg"/></a></li>
+					<li><a href=""><img src="images/lunbo3.jpg"/></a></li>
+					<li><a href=""><img src="images/lunbo2.jpg"/></a></li>
+					<li><a href=""><img src="images/lunbo3.jpg"/></a></li>
+				</ul>
+				<div class="nav">
+					<ul>
+						<li class="select">1</li>
+						<li>2</li>
+						<li>3</li>
+						<li>4</li>
+						<li>5</li>
+						<li>6</li>
+						<li>7</li>
+					</ul>
+				</div>
+				<div class="btn btn-left">
+					<span></span>
+				</div>
+				<div class="btn btn-right">
+					<span></span>
+				</div>
+			</div>
+			
+			<div id="viewpager-2">
+				<div class="viewpager-2">
+					<ul>
+						<li><a href=""><img src="images/s-lunbo1-1.jpg"/></a></li>
+						<li><a href=""><img src="images/s-lunbo1-2.jpg"/></a></li>
+						<li><a href=""><img src="images/s-lunbo1-3.jpg"/></a></li>
+						<li><a href=""><img src="images/s-lunbo1-4.jpg"/></a></li>
+					</ul>
+					<ul>
+						<li><a href=""><img src="images/s-lunbo1-1.jpg"/></a></li>
+						<li><a href=""><img src="images/s-lunbo1-2.jpg"/></a></li>
+						<li><a href=""><img src="images/s-lunbo1-2.jpg"/></a></li>
+						<li><a href=""><img src="images/s-lunbo1-2.jpg"/></a></li>
+					</ul>
+				</div>
+				
+				<div class="btn btn-left">
+					<span></span>
+				</div>
+				<div class="btn btn-right">
+					<span></span>
+				</div>
+			</div>
+			
 		</div>
 		<div id="sec-aside">
 			<div class="aside-img"><a href=""><img src="images/kejitushu.jpg"/></a></div>
 			<div class="aside-news">
-				<p>
+				<p class="news-title">
 					<span>信息公告</span>
 					<span class="aside-news-hover">服务公告</span>
 				</p>
@@ -228,9 +289,27 @@
 				</p>
 			</div>
 			<div class="aside-books">
-				<ul>
-					<li><a href=""><img src="images/ss-lunbo1.jpg"/></a></li>
-				</ul>
+				<div class="aside-books-main">
+					<ul>
+						<li><a href=""><img src="images/ss-lunbo1.jpg"/></a></li>
+						<li><a href=""><img src="images/ss-lunbo2.jpg"/></a></li>
+						<li><a href=""><img src="images/ss-lunbo3.jpg"/></a></li>
+					</ul>
+				</div>
+				<div class="nav">
+					<ul>
+						<li class="select">1</li>
+						<li>2</li>
+						<li>3</li>
+					</ul>
+				</div>
+				<div class="btn btn-left">
+					<span></span>
+				</div>
+				<div class="btn btn-right">
+					<span></span>
+				</div>
+				
 			</div>
 		</div>
 	</section>
@@ -436,7 +515,7 @@
 				<a href="">厂商周</a>
 				<span>
 					<em></em>
-					<em></em>
+					<em class="hover"></em>
 				</span>
 			</div>
 			<div class="seckill-lunbo-main">
@@ -446,6 +525,14 @@
 					<a href=""><img src="images/miaoshalunbo1-3.jpg"/></a>
 					<a href=""><img src="images/miaoshalunbo1-4.jpg"/></a>
 				</div>
+				<div>
+					<a href=""><img src="images/miaoshalunbo2-1.jpg"/></a>
+					<a href=""><img src="images/miaoshalunbo2-2.jpg"/></a>
+					<a href=""><img src="images/miaoshalunbo2-1.jpg"/></a>
+					<a href=""><img src="images/miaoshalunbo2-2.jpg"/></a>
+				</div>
+			
+		
 			</div>
 		</div>
 	</div>
@@ -714,7 +801,7 @@
 		</div>
 		<div class="recommend-main">
 			<ul>
-				<li>
+				<!-- <li>
 					<a href=""><img src="images/recommend1.jpg"/></a>
 					<p class="name">
 						<a href="" title="浮生六记 （汪涵推荐，畅销200万册。沈复给芸娘的绝美情书）">浮生六记&nbsp;（汪涵推荐，畅销200万册。沈复给芸娘的绝美情书）</a>
@@ -779,8 +866,14 @@
 						<span class="ebookprice_n">电子书<span class="sign">¥</span>
 						<span class="num">5.99</span></span>
 					</p>
-				</li>
+				</li> -->
 			</ul>
+			<ul></ul>
+			<ul></ul>
+			<ul></ul>
+			<ul></ul>
+			
+			
 		</div>
 	</div>
 	

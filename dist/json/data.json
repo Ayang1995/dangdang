@@ -1,0 +1,33 @@
+[
+	{
+		"recomName":"浮生六记 （汪涵推荐，畅销200万册。沈复给芸娘的绝美情书）",
+		"recomUrl":"images/recommend1.jpg",
+		"recomPrice":16.00,
+		"ebookprice":5.99
+	},{
+		"recomName":"我喜欢生命本来的样子（周国平经典）",
+		"recomUrl":"images/recommend2.jpg",
+		"recomPrice":16.00,
+		"ebookprice":5.99
+	},{
+		"recomName":"你坏（大冰2018作品！预售10分钟8.6万册+，30分钟突破11.8万册",
+		"recomUrl":"images/recommend3.jpg",
+		"recomPrice":16.00,
+		"ebookprice":5.99
+	},{
+		"recomName":"月亮与六便士（新版！未删节插图珍藏版，荣获波比小说奖诗人译本，夺得2017豆瓣阅读图书桂冠！）",
+		"recomUrl":"images/recommend4.jpg",
+		"recomPrice":16.00,
+		"ebookprice":5.99
+	},{
+		"recomName":"生活需要仪式感 （你可以活得更高级，把温暖和感动带给你在乎的人）",
+		"recomUrl":"images/recommend5.jpg",
+		"recomPrice":16.00,
+		"ebookprice":5.99
+	},{
+		"recomName":"这个恋爱有点甜（当当专享签名本）（恋爱加糖，浪漫加倍，甜度满分，只你对味~你想要的爱情，这里都有！）",
+		"recomUrl":"images/recommend6.jpg",
+		"recomPrice":16.00,
+		"ebookprice":5.99
+	}
+]
