@@ -8,13 +8,22 @@ $(function(){
 	/* 弹出搜索条 */
 		$(window).scroll(function(){
 			var scrollTop=$(window).scrollTop();
-			console.log(scrollTop);
+			//console.log(scrollTop);
 			if(scrollTop>800){
 				$("#top-seach").css("display","block");
 			}else{
 				$("#top-seach").css("display","none");
 			}
 		})
+	
+	
+	/* 登录用户名 */
+	var username = location.search;
+	username =username.split("=")[1];
+	console.log(username);
+	if(username){
+		$(".top-nav-right").find(".login").html("你好，"+username).css("color","red");
+	}
 	
 	/* 地址 */
 	$("#address").find("a").mouseover(function(){
@@ -51,7 +60,7 @@ $(function(){
 		 if(oTxt==""){
 		 	$("#seach-list").css("display","none");
 		 }
-		console.log(oTxt);
+		//console.log(oTxt);
 		$.ajax({
 			url:"https://suggest.taobao.com/sug?code=utf-8&q="+oTxt+"&_ksTS=1535029416574_345&callback=data&k=1&area=c2c&bucketid=16",
 			dataType:"jsonp",
@@ -129,9 +138,6 @@ $(function(){
 	}) 
 	
 	
-	
-	 
-	
 	 /* 列表菜单 */ 
 	$.getJSON("../json/menu.json",function(data){
 		var data =data.menuList;
@@ -143,7 +149,7 @@ $(function(){
 				var menu_list_title =$(this)[0].title;
 				var menu_list_link =$(this)[0].link; 
 				//console.log(menu_list_title,menu_list_link)
-				 str +=`<a href="">${menu_list_title}</a><span>、</span>`;
+				 str +=`<a href="list.html">${menu_list_title}</a><span>、</span>`;
 				 //console.log(str);
 			})
 			str1=`<li>${str}</li>`;
@@ -306,7 +312,7 @@ $(function(){
 	 
 	 /* 为你推荐*/
 	 $.getJSON("../json/data.json",function(data){
-		 console.log(data);
+		// console.log(data);
 		 var recomLi ="";
 		 $(data).each(function(){
 			//console.log($(this)[0]);
@@ -322,7 +328,7 @@ $(function(){
 					</p>
 				</li>`;
 		 })
-		 console.log(recomLi);
+		 //console.log(recomLi);
 		 $(".recommend-main").find("ul").append(recomLi);
 	 })
 })
