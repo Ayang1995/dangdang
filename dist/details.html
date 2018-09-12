@@ -7,6 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="css/details.css"/>
 		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/details.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/cookie.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
 		<!-- 头部 -->
@@ -48,7 +49,7 @@
 					</div>
 					<div class="kucun">库存：<span></span>件</div>
 					<div class="gouwuche">
-						<a href="shoppingcart.html">加入购物车</a>
+						<a href="javascript:;" class="addguwuche">加入购物车</a>
 						<a href="">立即购买</a>
 					</div>
 				</div>
@@ -74,7 +75,15 @@
 				</div>
 			</div>
 		</div>
-		
+		<!-- 弹出框 -->
+		<div class="pop-up-box">
+			<span>已成功加入购物车,前往购物车结算？</span>
+			<div class="pop-up-btn">
+				<a href="javascript:;">好的</a>
+				<span>不，我还要再逛逛</span>
+			</div>
+			
+		</div>
 		<!-- footer -->
 		<div id="footer"></div>
 	</body>
