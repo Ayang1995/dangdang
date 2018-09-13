@@ -1,8 +1,8 @@
 
-/* $.post("http://h6.duchengjiu.top/shop/api_user.php",{status:"login",username:"yangxiaolong",password:"111111"},function(data){
-				console.log(data);
-			}) */
 $(function(){
+	/* footer */
+	$("#footer").load("footer.html");
+	/* denglu */
 	$("#login-btn").click(function(){
 		var username =$("#login-txt").val();
 		var userpwd =$("#login-pwd").val();
@@ -16,6 +16,8 @@ $(function(){
 				var num =data.code;
 				if(num==0){
 					location.href="index.html?username="+username;
+					setCookie("userName",username,7);
+					
 				}
 				if(num==1001||num==2002){
 					/* 密码错误或用户名错误 */
@@ -24,5 +26,9 @@ $(function(){
 				
 		})
 	})
+	
+	
+	
+	
 	
 })

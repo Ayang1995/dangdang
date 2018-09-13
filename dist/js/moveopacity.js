@@ -30,7 +30,7 @@ function moveopacityUl(ele,elestop){
 				
 				$(ele).parent().siblings(".btn-left").click(function(){
 					i--;
-					console.log(i);
+					//console.log(i);
 					if(i==-1){
 						i=elelen-1;
 					}
@@ -39,7 +39,7 @@ function moveopacityUl(ele,elestop){
 				})
 				$(ele).parent().siblings(".btn-right").click(function(){
 					i++;
-					console.log(i);
+					//console.log(i);
 					if(i==elelen){
 						i=0;
 					}
@@ -85,14 +85,14 @@ function moveopacityUl(ele,elestop){
 						
 						$(".nav li").each(function(m){
 							$(this).hover(function(){
-								console.log(m)
+								//console.log(m)
 								i=m-1;
 								move();
 							})
 						})
 						$(ele).parent().siblings(".btn-left").click(function(){
 							i--;
-							console.log(i);
+							//console.log(i);
 							if(i==-1){
 								i=elelen-1;
 							}

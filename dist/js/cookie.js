@@ -19,3 +19,4 @@ function getCookie(name){
 function removeCookie(name) {
 	setCookie(name, 1, -1);
 }
+document.onselectstart = function(){return false;}; 

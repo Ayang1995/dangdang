@@ -1,9 +1,41 @@
 $(function(){
-	/* cookie */
-	if(getCookie("recodes")){
-		var arecodes = JSON.parse(getCookie("recodes"));
+		var uN =getCookie("userName");
+	
+	/* 头部 */
+	$("#head").load("head.html",function(){
+		var uN =getCookie("userName");
+		if(uN){
+			var tBtn=`<a href="" class="tuichu">[退出]</a>`;
+			//console.log(typeof($("#head").find(".login")),$("#head").find(".login")[0]);
+			$("#head").find(".login").html("你好，"+uN).css("color","red").append($(tBtn));
+			$(".tuichu").click(function(){
+				removeCookie("userName");
+			})
+		}
+	//console.log(getCookie("userName"));
+
+	if(getCookie(uN)){
+		var arecodes = JSON.parse(getCookie(uN));
 	}
-	console.log(arecodes);
+	var pronums=0;
+	for(var i  in arecodes){
+		pronums+=arecodes[i];
+	}
+	//console.log(pronums);
+	$(".top-list li").eq(0).find("span").html(pronums);
+	})
+	
+	
+	/* footer */
+	$("#footer").load("footer.html");
+
+	
+	
+	/* cookie */
+	if(getCookie(uN)){
+		var arecodes = JSON.parse(getCookie(uN));
+	}
+	//console.log(arecodes);
 	  $(arecodes).each(function(i){
 		//console.log($(this)[0]);
 		var productId =$(this)[0];
@@ -15,11 +47,11 @@ $(function(){
 		procount+=arecodes[i];
 		
 	}
-	console.log($("#content"));
+	//console.log($("#content"));
 	$(".select-pro").find("span").html(procount);
 /*加 减 删除 */	
 	var num=0;
-	var cartobj = JSON.parse(getCookie("recodes"));
+	var cartobj = JSON.parse(getCookie(uN));
 	$(".shopping-list").delegate("ul li .reduce","click",function(){
 		var oneprice =Number($(this).parent().parent().parent().children().eq(3).find("span").html());
 		//console.log(oneprice);
@@ -39,7 +71,7 @@ $(function(){
 				cartobj[index]=num;	
 			}		
 		var strToObj = JSON.stringify(cartobj);
-		setCookie("recodes",strToObj,7);
+		setCookie(uN,strToObj,7);
 		var tp1 =$(".shopping-list").find("ul li.proPrice span");
 		var tp2=0;
 		$(tp1).each(function(){
@@ -60,7 +92,7 @@ $(function(){
 		var index =$(this).parent().attr("data-id");
 		cartobj[index]=num;			
 		var strToObj = JSON.stringify(cartobj);
-		setCookie("recodes",strToObj,7);
+		setCookie(uN,strToObj,7);
 		//console.log(num);
 		var tp1 =$(".shopping-list").find("ul li.proPrice span");
 		var tp2=0;
@@ -83,7 +115,7 @@ $(function(){
 				}
 			}
 			var strToObj = JSON.stringify(cartobj);
-			setCookie("recodes",strToObj,7);
+			setCookie(uN,strToObj,7);
 	})
 	
 	$(".del").click(function(){
@@ -98,7 +130,7 @@ $(function(){
 				}
 			}
 			var strToObj = JSON.stringify(cartobj);
-			setCookie("recodes",strToObj,7);
+			setCookie(uN,strToObj,7);
 		})
 		var tp1 =$(".shopping-list").find("ul li.proPrice span");
 		var tp2=0;

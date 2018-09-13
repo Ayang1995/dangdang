@@ -1,19 +1,44 @@
 $(function(){
+	var uN =getCookie("userName");
+	/* 头部 */
+	$("#head").load("head.html",function(){
+		var uN =getCookie("userName");
+		if(uN){
+			var tBtn=`<a href="" class="tuichu">[退出]</a>`;
+			//console.log(typeof($("#head").find(".login")),$("#head").find(".login")[0]);
+			$("#head").find(".login").html("你好，"+uN).css("color","red").append($(tBtn));
+			$(".tuichu").click(function(){
+				removeCookie("userName");
+			})
+		}
+	//console.log(getCookie("userName"));
+	if(getCookie(uN)){
+		var arecodes = JSON.parse(getCookie(uN));
+	}
+	var pronums=0;
+	for(var i  in arecodes){
+		pronums+=arecodes[i];
+	}
+	//console.log(pronums);
+	$(".top-list li").eq(0).find("span").html(pronums);
+	})
+	/* footer */
+	$("#footer").load("footer.html");
+	
 	var id =location.search;
 	id =id.split("=")[1];
-	console.log(id);
+	//console.log(id);
 /* 弹窗 */
 	$(".addguwuche").click(function(){
 		$(".pop-up-box").fadeIn();
 		cookie(id);
 	})
 	var count =cookie(id);
-	console.log(count);
+	//console.log(count);
 	$(".pop-up-btn").find("a").click(function(){
 		location.href="shoppingcart.html";
 	})
 	$(".pop-up-btn").find("span").click(function(){
-		//
 		$(".pop-up-box").fadeOut();
 	})
 		
@@ -31,7 +56,7 @@ $(function(){
 			//console.log($(this));
 		var listId =$(this)[0].listId;
 			if(id==listId){
-				console.log($(this));
+				//console.log($(this));
 				var listName =$(this)[0].listName;
 				var listPrice =$(this)[0].listPrice;
 				var author =$(this)[0].author;
@@ -39,14 +64,14 @@ $(function(){
 				var detailpro =$(this)[0].detailpro;
 				var detailmid =$(this)[0].detailmid;
 				var detailimg =$(this)[0].detailimg;
-				console.log(listName,listPrice,author,counts,listId,detailpro,detailimg);
+				//console.log(listName,listPrice,author,counts,listId,detailpro,detailimg);
 				$(".pic-mid").find("img").attr('src',detailmid);
 				var picsmall="";
 				$(detailimg).each(function(){
 					//console.log($(this));
 					picsmall +=`<li><img src="${$(this)[0].src}"/></li>`;
 				})
-				console.log(picsmall);
+				//console.log(picsmall);
 				$(".pic-small").find("ul").append(picsmall);
 				fdj();
 				$(".productmes-head").find("h2").html(listName);
@@ -120,11 +145,13 @@ $(function(){
 			}
 	}
 	
-	
+	var uN =getCookie("userName");
+	/* setCookie(uN,112,7);
+	console.log(getCookie(uN)); */
 	/* cookie */
 	function cookie(id){
-		if(getCookie("recodes") !=undefined){
-			var cartobj = JSON.parse(getCookie("recodes"));
+		if(getCookie(uN) !=undefined){
+			var cartobj = JSON.parse(getCookie(uN));
 		}else{
 			var cartobj ={};
 		};
@@ -143,7 +170,8 @@ $(function(){
 					//每点击一下,购物车图标上的数字也增加;
 					count++;
 				var strToObj = JSON.stringify(cartobj);
-				setCookie("recodes",strToObj,7);
+				
+				setCookie(uN,strToObj,7);
 			})
 		return count;
 	}

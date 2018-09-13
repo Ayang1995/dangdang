@@ -16,15 +16,65 @@ $(function(){
 			}
 		})
 	
-	
 	/* 登录用户名 */
 	var username = location.search;
 	username =username.split("=")[1];
-	console.log(username);
-	if(username){
-		$(".top-nav-right").find(".login").html("你好，"+username).css("color","red");
+	//console.log(username);
+	/* if(username){
+		
+	} */
+	/* 侧边栏 */
+	$(window).scroll(function(){
+		var scrollTop=$(window).scrollTop();
+		console.log(scrollTop);
+		if(scrollTop>400){
+			$("#left-aside").css("display","block");
+		}else{
+			$("#left-aside").css("display","none");
+		}
+	})
+	$("#left-aside").on("click","li",function(){
+		console.log($(".seckill-main-products").offset().top);
+		if($(this).index()==0){
+			$(window).scrollTop($("#seckill").offset().top-200);
+		}
+		if($(this).index()==1){
+			$(window).scrollTop($("#lightningDeals").offset().top-200);
+		}
+		if($(this).index()==2){
+			$(window).scrollTop($("#books-products").offset().top-200);
+		}
+		if($(this).index()==3){
+			$(window).scrollTop($("#costume").offset().top-200);
+		}
+		if($(this).index()==4){
+			$(window).scrollTop($("#recommend").offset().top-200);
+		}
+		if($(this).index()==5){
+			$(window).scrollTop(0);
+		}
+	})
+	/* cookie */
+	var uN =getCookie("userName");
+	if(uN){
+		var tBtn=`<a href="" class="tuichu">[退出]</a>`;
+		$(".top-nav-right").find(".login").html("你好，"+uN).css("color","red").append($(tBtn));
+		$(".tuichu").click(function(){
+			removeCookie("userName");
+		})
 	}
 	
+	
+	if(getCookie(uN)){
+		var arecodes = JSON.parse(getCookie(uN));
+	}
+	var pronums=0;
+	for(var i  in arecodes){
+		pronums+=arecodes[i];
+	}
+	//console.log(pronums);
+	$(".top-list li").eq(0).find("span").html(pronums);
+	$(".gwc").find("span").html(pronums);
 	/* 地址 */
 	$("#address").find("a").mouseover(function(){
 		$(this).addClass("hover");
@@ -184,84 +234,83 @@ $(function(){
 	function secList(i){
 		$("menu").find("div.sec-list ul").empty();
 		$.getJSON("../json/menu-data.json",function(data){
-						var data=data[i];
-						 //console.log(data);
-						$(data).each(function(){
-							var recmlist=$(this)[0].recm;
-							var booksTop=$(this)[0].booksTop;
-							var subNavLists=$(this)[0].subNavLists;
-							var tjImg =$(this)[0].tjImg;
-							//console.log(recmlist,booksTop,subNavLists);
-							var recma="";
-							$(recmlist).each(function(){
-								var sec_list_recm_title =$(this)[0].title;
-								var sec_list_recm_link =$(this)[0].link;
-								recma+=`<a href="${sec_list_recm_link}"><em>${sec_list_recm_title}</em><span>&gt;</span></a>`;
-							}) 
-								var subNavspan="";
-								var suba="";
-								$(booksTop).each(function(){
-								var subNavtop =$(this)[0].subNavtop;
-								var sub =$(this)[0].sub;
-								//console.log(subNavtop,sub);
-								subNavspan=`<span>${subNavtop}</span>`;
-								$(sub).each(function(){
-									//console.log($(this)[0].title,$(this)[0].flag)
-									var subtitle=$(this)[0].title;
-									if($(this)[0].flag){
-										suba+=`<a href="" class="flag">${subtitle}&nbsp;&gt;&gt;</a>`
-									}
-									suba+=`<a href="">${subtitle}&nbsp;&gt;&gt;</a>`;
-								})
-							}) 
-							var subbookli="";
-							$(subNavLists).each(function(){
-								var subbookspan="";
-								var subNavLists =$(this)[0].subNavLit;
-								var sub =$(this)[0].sub;
-								//console.log(sub);
-								var subbooka="";
-								subbookspan=`<span>${subNavLists}</span>`;
-								$(sub).each(function(){
-									var subtitle=$(this)[0].title;
-									//console.log($(this));
-									if($(this)[0].flag){
-									subbooka+=`<a href="" class="flag">${subtitle}</a>`;
-									}
-									subbooka+=`<a href="">${subtitle}</a>`;
-								}) 
-							subbookdiv=`<div>${subbooka}</div>`;
-							subbookli+=`<li class="sec-list-books sec-list-ranking">${subbookspan}${subbookdiv}</li>`;	
-							});
-							//console.log(subbookli);
-							/* 图片 */
-							var tjImgli="";
-							$(tjImg).each(function(){
-							var tjImgsrc=$(this)[0].src;
-							tjImgli+=`<li><a href=""><img src="${tjImgsrc}"/></a></li>`;
-							})
-		
-							$("menu").find("div.sec-list-img ul").append(tjImgli);
-							/* console.log(tjImg); */
-							if(tjImg){
-								$("menu").find("ul.sec-lists").css("width","760");
-							}else{
-								$("menu").find("ul.sec-lists").css("width","1001");
-							}
-
-							/* 排行榜 */
-							if(booksTop){
-								var phdiv =`<div>${suba}</div>`;
-								var ph = `<li class="sec-list-books">${subNavspan}${phdiv}</li>`;
-							}
-							/* 标题 */ 
-							var recmli =`<li class="sec-list-title">${recma}</li>`;
-							
-							$("menu").find("div.sec-list ul.sec-lists").append(recmli,ph,subbookli);
-							
-						}) 
+			var data=data[i];
+			 //console.log(data);
+			$(data).each(function(){
+				var recmlist=$(this)[0].recm;
+				var booksTop=$(this)[0].booksTop;
+				var subNavLists=$(this)[0].subNavLists;
+				var tjImg =$(this)[0].tjImg;
+				//console.log(recmlist,booksTop,subNavLists);
+				var recma="";
+				$(recmlist).each(function(){
+					var sec_list_recm_title =$(this)[0].title;
+					var sec_list_recm_link =$(this)[0].link;
+					recma+=`<a href="list.html"><em>${sec_list_recm_title}</em><span>&gt;</span></a>`;
+				}) 
+					var subNavspan="";
+					var suba="";
+					$(booksTop).each(function(){
+					var subNavtop =$(this)[0].subNavtop;
+					var sub =$(this)[0].sub;
+					//console.log(subNavtop,sub);
+					subNavspan=`<span>${subNavtop}</span>`;
+					$(sub).each(function(){
+						//console.log($(this)[0].title,$(this)[0].flag)
+						var subtitle=$(this)[0].title;
+						if($(this)[0].flag){
+							suba+=`<a href="list.html" class="flag">${subtitle}&nbsp;&gt;&gt;</a>`
+						}
+						suba+=`<a href="list.html">${subtitle}&nbsp;&gt;&gt;</a>`;
 					})
-					$("div.sec-list").attr("data-id",i);
+				}) 
+				var subbookli="";
+				$(subNavLists).each(function(){
+					var subbookspan="";
+					var subNavLists =$(this)[0].subNavLit;
+					var sub =$(this)[0].sub;
+					//console.log(sub);
+					var subbooka="";
+					subbookspan=`<span>${subNavLists}</span>`;
+					$(sub).each(function(){
+						var subtitle=$(this)[0].title;
+						//console.log($(this));
+						if($(this)[0].flag){
+						subbooka+=`<a href="list.html" class="flag">${subtitle}</a>`;
+						}
+						subbooka+=`<a href="list.html">${subtitle}</a>`;
+					}) 
+				subbookdiv=`<div>${subbooka}</div>`;
+				subbookli+=`<li class="sec-list-books sec-list-ranking">${subbookspan}${subbookdiv}</li>`;	
+				});
+				//console.log(subbookli);
+				/* 图片 */
+				var tjImgli="";
+				$(tjImg).each(function(){
+				var tjImgsrc=$(this)[0].src;
+				tjImgli+=`<li><a href=""><img src="${tjImgsrc}"/></a></li>`;
+				})
+				$("menu").find("div.sec-list-img ul").append(tjImgli);
+				/* console.log(tjImg); */
+				if(tjImg){
+					$("menu").find("ul.sec-lists").css("width","760");
+				}else{
+					$("menu").find("ul.sec-lists").css("width","1001");
+				}
+
+				/* 排行榜 */
+				if(booksTop){
+					var phdiv =`<div>${suba}</div>`;
+					var ph = `<li class="sec-list-books">${subNavspan}${phdiv}</li>`;
+				}
+				/* 标题 */ 
+				var recmli =`<li class="sec-list-title">${recma}</li>`;
+				
+				$("menu").find("div.sec-list ul.sec-lists").append(recmli,ph,subbookli);
+				
+			}) 
+		})
+		$("div.sec-list").attr("data-id",i);
 	}
 	
 		/* 图片轮播 */
@@ -303,6 +352,50 @@ $(function(){
 	/* var asidebooksli = $(".aside-books").find("div.aside-books-main li");
 	console.log(asidebooksli);
 	$(asidebooksli).animate({"left":-202},2000).siblings().css("left",0); */
+	/* 秒杀 */
+	
+	$.getJSON("../json/miaosha.json",function(data){
+		var msbox="";
+		$(data).each(function(){
+			//console.log($(this)[0].msTitle);
+			msbox+=`<div class="seckill-main-products-lists">
+					<a href="" title="${$(this)[0].msTitle}">
+						<img src="${$(this)[0].msUrl}" />
+					</a>
+					<div class="seckill-progressbar">
+						<em>
+							<strong data-jd="${$(this)[0].msjd}"></strong>
+						</em>
+						<b></b>
+						<span>已秒杀${$(this)[0].msjd}%</span>
+					</div>
+					<p><a href="" title="${$(this)[0].msTitle}">${$(this)[0].msTitle}）</a></p>
+					<div class="price">
+						秒杀价：￥<span>${$(this)[0].msPri}</span>
+						<del>${$(this)[0].msDel}</del>
+					</div>
+				</div>`;
+			
+		})
+		$(".seckill-main-products").append(msbox);
+		var	wid =$(".seckill-main-products").find("strong");
+			$(wid).each(function(){
+				var w=Number($(this).attr("data-jd"));
+					//console.log(w);
+					$(this).css("width",w+"%");
+			})
+	})
+	
+
+	/* 图书 */
+	$(".books-pro-l-nav").find("ul li").each(function(){
+		$(this).mouseover(function(){
+			//console.log($(this).index())
+			$("#books-pro-con").children().eq($(this).index()).css("display","block")
+			.siblings().css("display","none");
+		})
+		
+	})
 
 	/* 厂商周轮播 */	
 	 var seckilllunbo = $("#seckill-lunbo").find(".seckill-lunbo-main div");
